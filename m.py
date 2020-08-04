@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter.filedialog import asksaveasfile
+
 
 class DEditor:
 
@@ -7,9 +9,19 @@ class DEditor:
         self.root = Tk()
 
 
+    def retrieve_input(self):
+        inputValue=self.text.get("1.0","end-1c")
+        print(inputValue)
+        files = [('All Files', '*.*'), ('Python Files', '*.py'), ('Text Document', '*.txt')] 
+        file = asksaveasfile(filetypes = files, defaultextension = files)
+        file.write(inputValue)
+
+
     def execute(self):
-        text = Text(self.root)
-        text.pack()
+        self.text = Text(self.root)
+        self.text.pack()
+        buttonCommit=Button(self.root, height=1, width=10, text="Save File", command=lambda: self.retrieve_input())
+        buttonCommit.pack()
         self.root.title('DEditor')
         self.root.mainloop()
 
