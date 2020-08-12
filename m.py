@@ -30,7 +30,9 @@ class DEditor:
 
 
     def execute(self):
-        self.text = Text(self.root)
+        width  = self.root.winfo_screenwidth()
+        height = self.root.winfo_screenheight()
+        self.text = Text(self.root,height=height-200,width=width-20)
         self.text.pack()
         #buttonCommit=Button(self.root, height=1, width=10, text="Save File", command=lambda: self.retrieve_input())
         #buttonCommit.pack()
@@ -50,7 +52,7 @@ class DEditor:
         
         menubar.add_cascade(label = "Help", menu = helpmenu)
         
-        
+        self.root.geometry(f'{width}x{height}')
         self.root.config(menu=menubar)
         self.root.title('DEditor')
         self.root.mainloop()
